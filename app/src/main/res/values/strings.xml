@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">realmboilerplate</string>
+    <string name="app_name">Realm boilerplate</string>
+    <string name="action_settings">Settings</string>
+    <string name="dialog_action_ok">OK</string>
+    <string name="dialog_action_cancel">Cancel</string>
+    <string name="dialog_error_title">Sorry</string>
+    <string name="error_loading_news">There was a problem loading the news</string>
+    <string name="empty_news">There aren\\\'t any news</string>
 </resources>
