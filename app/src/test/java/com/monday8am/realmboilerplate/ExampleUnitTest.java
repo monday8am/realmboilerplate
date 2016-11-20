@@ -15,5 +15,5 @@ public class ExampleUnitTest {
     public void additionIsCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
-    
+
 }
