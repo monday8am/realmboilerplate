@@ -8,7 +8,7 @@ import rx.Subscription;
 
 public final class RxUtil {
 
-    public static void unsubscribe(Subscription subscription) {
+    public static void unSubscribe(Subscription subscription) {
         if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }

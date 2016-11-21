@@ -80,6 +80,10 @@ dependencies {
     }
     */
 
+    compile 'com.jakewharton.timber:timber:4.1.2'
+    compile "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION"
+
     // Instrumentation test dependencies
     androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION", {
         exclude module: 'support-annotations'

@@ -1,6 +1,6 @@
 package com.monday8am.realmboilerplate.util;
 
-//import javax.inject.Inject;
+import javax.inject.Inject;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;
@@ -13,7 +13,7 @@ public class RxEventBus {
 
     private final PublishSubject<Object> mBusSubject;
 
-    //@Inject
+    @Inject
     public RxEventBus() {
         mBusSubject = PublishSubject.create();
     }

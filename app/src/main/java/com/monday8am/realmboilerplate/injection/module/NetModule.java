@@ -18,20 +18,20 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * NetModule that provides Net components.
  * Created by anton on 20/11/2016.
  */
 
 @Module
 public class NetModule {
 
-    String mBaseUrl;
+    private String mBaseUrl;
 
     // Constructor needs one parameter to instantiate.
     public NetModule(String baseUrl) {
         this.mBaseUrl = baseUrl;
     }
 
-    // Dagger will only look for methods annotated with @Provides
     @Provides
     @Singleton
     // Application reference must come from AppModule.class
