@@ -12,8 +12,6 @@ import com.monday8am.realmboilerplate.injection.module.AppModule;
 import com.monday8am.realmboilerplate.injection.module.NetModule;
 
 import io.fabric.sdk.android.Fabric;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import rx.plugins.RxJavaErrorHandler;
 import rx.plugins.RxJavaPlugins;
 import timber.log.Timber;
@@ -50,11 +48,6 @@ public class RealmBoilerplateApp extends Application {
                 Timber.e(e.toString());
             }
         });
-
-        // Set default configuration for Realm
-        Realm.init(this);
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(realmConfig);
     }
 
     public static RealmBoilerplateApp get(Context context) {
