@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Store class for handling the business rules of the app.
+ * DataManager class for handling the business rules of the app.
  */
 
-public class Store {
+public class DataManager {
 
     /**
      * Map between section titles and their NYTimes API keys
@@ -32,6 +32,20 @@ public class Store {
         sections.put("travel", "Travel");
         sections.put("magazine", "Magazine");
         sections.put("realestate", "Real Estate");
+    }
+
+
+    private static DataManager instance = null;
+    private final Repository repository;
+    private String selectedSection;
+
+    // This could be replaced by Dependency Injection for easier testing
+    public static synchronized Model getInstance() {
+        if (instance == null) {
+            Repository repository = new Repository();
+            instance = new Model(repository);
+        }
+        return instance;
     }
 
 }
