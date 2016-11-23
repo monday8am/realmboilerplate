@@ -12,6 +12,10 @@ import com.monday8am.realmboilerplate.injection.module.AppModule;
 import com.monday8am.realmboilerplate.injection.module.NetModule;
 
 import io.fabric.sdk.android.Fabric;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import rx.plugins.RxJavaErrorHandler;
+import rx.plugins.RxJavaPlugins;
 import timber.log.Timber;
 
 public class RealmBoilerplateApp extends Application {
@@ -38,13 +42,28 @@ public class RealmBoilerplateApp extends Application {
                 .appModule(new AppModule(this))
                 .netModule(new NetModule("https://api.github.com"))
                 .build();
+
+        RxJavaPlugins.getInstance().registerErrorHandler(new RxJavaErrorHandler() {
+            @Override
+            public void handleError(Throwable e) {
+                super.handleError(e);
+                Timber.e(e.toString());
+            }
+        });
+
+        // Set default configuration for Realm
+        Realm.init(this);
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder().build();
+        Realm.setDefaultConfiguration(realmConfig);
     }
 
     public static RealmBoilerplateApp get(Context context) {
         return (RealmBoilerplateApp) context.getApplicationContext();
     }
 
-    public AppComponent getAppComponent() { return mAppComponent; }
+    public AppComponent getAppComponent() {
+        return mAppComponent;
+    }
 
     public NetComponent getNetComponent() {
         return mNetComponent;

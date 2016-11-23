@@ -9,90 +9,90 @@ public class NYTimesMultimedium extends RealmObject {
 
     @PrimaryKey
     @JsonProperty("url")
-    private String url;
+    private String mUrl;
 
     @JsonProperty("format")
-    private String format;
+    private String mFormat;
 
     @JsonProperty("height")
-    private int height;
+    private int mHeight;
 
     @JsonProperty("width")
-    private int width;
+    private int mWidth;
 
     @JsonProperty("type")
-    private String type;
+    private String mType;
 
     @JsonProperty("subtype")
-    private String subtype;
+    private String mSubtype;
 
     @JsonProperty("caption")
-    private String caption;
+    private String mCaption;
 
     @JsonProperty("copyright")
-    private String copyright;
+    private String mCopyright;
 
     public String getUrl() {
-        return url;
+        return mUrl;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        mUrl = url;
     }
 
     public String getFormat() {
-        return format;
+        return mFormat;
     }
 
     public void setFormat(String format) {
-        this.format = format;
+        mFormat = format;
     }
 
     public int getHeight() {
-        return height;
+        return mHeight;
     }
 
     public void setHeight(int height) {
-        this.height = height;
+        mHeight = height;
     }
 
     public int getWidth() {
-        return width;
+        return mWidth;
     }
 
     public void setWidth(int width) {
-        this.width = width;
+        mWidth = width;
     }
 
     public String getType() {
-        return type;
+        return mType;
     }
 
     public void setType(String type) {
-        this.type = type;
+        mType = type;
     }
 
     public String getSubtype() {
-        return subtype;
+        return mSubtype;
     }
 
     public void setSubtype(String subtype) {
-        this.subtype = subtype;
+        mSubtype = subtype;
     }
 
     public String getCaption() {
-        return caption;
+        return mCaption;
     }
 
     public void setCaption(String caption) {
-        this.caption = caption;
+        mCaption = caption;
     }
 
     public String getCopyright() {
-        return copyright;
+        return mCopyright;
     }
 
     public void setCopyright(String copyright) {
-        this.copyright = copyright;
+        mCopyright = copyright;
     }
 }

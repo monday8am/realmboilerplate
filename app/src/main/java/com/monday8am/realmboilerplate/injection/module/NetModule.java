@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.monday8am.realmboilerplate.data.remote.NYTimesService;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -61,5 +63,11 @@ public class NetModule {
                 .baseUrl(mBaseUrl)
                 .client(okHttpClient)
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    NYTimesService providesNYTimesService (Retrofit retrofit) {
+        return retrofit.create(NYTimesService.class);
     }
 }

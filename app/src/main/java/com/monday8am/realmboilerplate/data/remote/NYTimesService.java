@@ -17,6 +17,6 @@ public interface NYTimesService {
 
     @GET("svc/topstories/v1/{section}.json")
     Observable<NYTimesResponse<List<NYTimesStory>>> topStories(
-        @Path("section") String section,
-        @Query(value = "api-key", encoded = true) String apiKey);
+            @Path("section") String section,
+            @Query(value = "api-key", encoded = true) String apiKey);
 }

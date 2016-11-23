@@ -18,16 +18,18 @@ import io.realm.RealmList;
  * Custom deserializer.
  */
 
-public class RealmListNYTimesMultimediumDeserializer extends JsonDeserializer<List<NYTimesMultimedium>> {
+public class RealmListNYTimesMultimediumDeserializer
+        extends JsonDeserializer<List<NYTimesMultimedium>> {
 
-    ObjectMapper objectMapper;
+    private ObjectMapper mObjectMapper;
 
     public RealmListNYTimesMultimediumDeserializer() {
-        objectMapper = new ObjectMapper();
+        mObjectMapper = new ObjectMapper();
     }
 
     @Override
-    public List<NYTimesMultimedium> deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+    public List<NYTimesMultimedium> deserialize(JsonParser jp, DeserializationContext ctxt)
+            throws IOException {
         RealmList<NYTimesMultimedium> list = new RealmList<>();
 
         TreeNode treeNode = jp.getCodec().readTree(jp);
@@ -38,7 +40,7 @@ public class RealmListNYTimesMultimediumDeserializer extends JsonDeserializer<Li
         ArrayNode arrayNode = (ArrayNode) treeNode;
         for (JsonNode node : arrayNode) {
             NYTimesMultimedium nyTimesMultimedium =
-                    objectMapper.treeToValue(node, NYTimesMultimedium.class);
+                    mObjectMapper.treeToValue(node, NYTimesMultimedium.class);
             list.add(nyTimesMultimedium);
         }
         return list;

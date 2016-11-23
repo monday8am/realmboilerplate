@@ -15,178 +15,180 @@ public class NYTimesStory extends RealmObject {
     public static final String URL = "url";
     public static final String API_SECTION = "apiSection";
 
-    private String apiSection;
+    private String mApiSection;
 
+    // have incorrect indentation level 8, expected level should be 12.
     @JsonProperty("section")
-    private String section;
+    private String mSection;
 
     @JsonProperty("subsection")
-    private String subsection;
+    private String mSubsection;
 
     @JsonProperty("title")
-    private String title;
+    private String mTitle;
 
     @JsonProperty("abstract")
-    private String storyAbstract;
+    private String mStoryAbstract;
 
     @PrimaryKey
     @JsonProperty("url")
-    private String url;
+    private String mUrl;
 
     @JsonProperty("byline")
-    private String byline;
+    private String mByline;
 
     @JsonProperty("item_type")
-    private String itemType;
+    private String mItemType;
 
     @JsonProperty("updated_date")
-    private String updatedDate;
+    private String mUpdatedDate;
 
     @JsonProperty("created_date")
-    private String createdDate;
+    private String mCreatedDate;
 
     @JsonProperty("published_date")
-    private String publishedDate;
+    private String mPublishedDate;
 
     @JsonProperty("material_type_facet")
-    private String materialTypeFacet;
+    private String mMaterialTypeFacet;
 
     @JsonProperty("kicker")
-    private String kicker;
+    private String mKicker;
 
     @JsonProperty("multimedia")
-    private RealmList<NYTimesMultimedium> multimedia;
+    private RealmList<NYTimesMultimedium> mMultimedia;
 
-    private long sortTimeStamp;
-    private boolean read;
+    private long mSortTimeStamp;
+
+    private boolean mRead;
 
     public String getSection() {
-        return section;
+        return mSection;
     }
 
-    public void setSection(String section) {
-        this.section = section;
+    public void setSection(String mSection) {
+        this.mSection = mSection;
     }
 
     public String getSubsection() {
-        return subsection;
+        return mSubsection;
     }
 
-    public void setSubsection(String subsection) {
-        this.subsection = subsection;
+    public void setSubsection(String mSubsection) {
+        this.mSubsection = mSubsection;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        mTitle = title;
     }
 
     public String getStoryAbstract() {
-        return storyAbstract;
+        return mStoryAbstract;
     }
 
     public void setStoryAbstract(String storyAbstract) {
-        this.storyAbstract = storyAbstract;
+        mStoryAbstract = storyAbstract;
     }
 
     public String getUrl() {
-        return url;
+        return mUrl;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        mUrl = url;
     }
 
     public String getByline() {
-        return byline;
+        return mByline;
     }
 
     public void setByline(String byline) {
-        this.byline = byline;
+        mByline = byline;
     }
 
     public String getItemType() {
-        return itemType;
+        return mItemType;
     }
 
     public void setItemType(String itemType) {
-        this.itemType = itemType;
+        mItemType = itemType;
     }
 
     public String getUpdatedDate() {
-        return updatedDate;
+        return mUpdatedDate;
     }
 
     public void setUpdatedDate(String updatedDate) {
-        this.updatedDate = updatedDate;
+        mUpdatedDate = updatedDate;
     }
 
     public String getCreatedDate() {
-        return createdDate;
+        return mCreatedDate;
     }
 
     public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
+        this.mCreatedDate = createdDate;
     }
 
     public String getPublishedDate() {
-        return publishedDate;
+        return mPublishedDate;
     }
 
     public void setPublishedDate(String publishedDate) {
-        this.publishedDate = publishedDate;
+        mPublishedDate = publishedDate;
     }
 
     public String getMaterialTypeFacet() {
-        return materialTypeFacet;
+        return mMaterialTypeFacet;
     }
 
     public void setMaterialTypeFacet(String materialTypeFacet) {
-        this.materialTypeFacet = materialTypeFacet;
+        mMaterialTypeFacet = materialTypeFacet;
     }
 
     public String getKicker() {
-        return kicker;
+        return mKicker;
     }
 
     public void setKicker(String kicker) {
-        this.kicker = kicker;
+        mKicker = kicker;
     }
 
     public RealmList<NYTimesMultimedium> getMultimedia() {
-        return multimedia;
+        return mMultimedia;
     }
 
     @JsonDeserialize(using = RealmListNYTimesMultimediumDeserializer.class)
     public void setMultimedia(RealmList<NYTimesMultimedium> multimedia) {
-        this.multimedia = multimedia;
+        mMultimedia = multimedia;
     }
 
     public long getSortTimeStamp() {
-        return sortTimeStamp;
+        return mSortTimeStamp;
     }
 
     public void setSortTimeStamp(long sortTimeStamp) {
-        this.sortTimeStamp = sortTimeStamp;
+        mSortTimeStamp = sortTimeStamp;
     }
 
     public boolean isRead() {
-        return read;
+        return mRead;
     }
 
     public void setRead(boolean read) {
-        this.read = read;
+        mRead = read;
     }
 
     public String getApiSection() {
-        return apiSection;
+        return mApiSection;
     }
 
     public void setApiSection(String apiSection) {
-        this.apiSection = apiSection;
+        mApiSection = apiSection;
     }
 
 }
