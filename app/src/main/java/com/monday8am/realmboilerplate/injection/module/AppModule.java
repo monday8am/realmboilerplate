@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 /**
@@ -40,7 +41,8 @@ public class AppModule {
     @Provides
     @Singleton
     RealmDatabaseHelper provideRealmDatabase(Application application) {
+        Realm.init(application);
         RealmConfiguration conf = new RealmConfiguration.Builder().build();
-        return new RealmDatabaseHelper(application, conf);
+        return new RealmDatabaseHelper(conf);
     }
 }

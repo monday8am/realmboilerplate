@@ -5,7 +5,6 @@ import android.content.Context;
 import com.monday8am.realmboilerplate.injection.ApplicationContext;
 import com.monday8am.realmboilerplate.injection.module.AppModule;
 import com.monday8am.realmboilerplate.ui.base.BaseActivity;
-import com.monday8am.realmboilerplate.ui.main.MainActivity;
 
 import javax.inject.Singleton;
 

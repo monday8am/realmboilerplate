@@ -1,6 +1,5 @@
 package com.monday8am.realmboilerplate.data.local;
 
-import android.app.Application;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 
@@ -31,9 +30,7 @@ public class RealmDatabaseHelper implements Closeable {
     private RealmConfiguration mRealmConfiguration;
 
     @UiThread
-    public RealmDatabaseHelper(Application context, RealmConfiguration realmConfiguration) {
-        Realm.init(context);
-        Realm.setDefaultConfiguration(realmConfiguration);
+    public RealmDatabaseHelper(RealmConfiguration realmConfiguration) {
         mRealmConfiguration = realmConfiguration;
         mRealm = Realm.getDefaultInstance();
     }

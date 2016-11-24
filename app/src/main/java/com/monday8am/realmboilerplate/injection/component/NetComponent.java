@@ -1,6 +1,5 @@
 package com.monday8am.realmboilerplate.injection.component;
 
-import com.monday8am.realmboilerplate.ui.main.MainActivity;
 import com.monday8am.realmboilerplate.injection.module.AppModule;
 import com.monday8am.realmboilerplate.injection.module.NetModule;
 
