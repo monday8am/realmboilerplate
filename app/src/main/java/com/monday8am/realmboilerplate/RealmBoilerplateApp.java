@@ -38,7 +38,7 @@ public class RealmBoilerplateApp extends Application {
         mNetComponent = DaggerNetComponent.builder()
                 // list of modules that are part of this component need to be created here too
                 .appModule(new AppModule(this))
-                .netModule(new NetModule("https://api.github.com"))
+                .netModule(new NetModule("http://api.nytimes.com/"))
                 .build();
 
         RxJavaPlugins.getInstance().registerErrorHandler(new RxJavaErrorHandler() {

@@ -78,6 +78,8 @@ dependencies {
 
     // App Dependencies
     compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+    compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
 
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:converter-jackson:$RETROFIT_VERSION"
