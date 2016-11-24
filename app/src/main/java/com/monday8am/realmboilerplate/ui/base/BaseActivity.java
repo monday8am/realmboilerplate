@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.monday8am.realmboilerplate.RealmBoilerplateApp;
+import com.monday8am.realmboilerplate.data.local.RealmDatabaseHelper;
 import com.monday8am.realmboilerplate.injection.component.ActivityComponent;
 import com.monday8am.realmboilerplate.injection.component.ConfigPersistentComponent;
 import com.monday8am.realmboilerplate.injection.component.DaggerConfigPersistentComponent;
@@ -12,6 +13,8 @@ import com.monday8am.realmboilerplate.injection.module.ActivityModule;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+
+import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -30,9 +33,15 @@ public class BaseActivity extends AppCompatActivity {
     private ActivityComponent mActivityComponent;
     private long mActivityId;
 
+    @Inject
+    RealmDatabaseHelper realmHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Inject realm helper.
+        RealmBoilerplateApp.get(this).getAppComponent().inject(this);
 
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
@@ -52,6 +61,9 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         mActivityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
+
+        // Increase number of activities in realm internal counter.
+        realmHelper.incrementCount();
     }
 
     @Override
@@ -67,6 +79,9 @@ public class BaseActivity extends AppCompatActivity {
             sComponentsMap.remove(mActivityId);
         }
         super.onDestroy();
+
+        // Decrease number of activities in realm internal counter.
+        realmHelper.decrementCount();
     }
 
     public ActivityComponent activityComponent() {

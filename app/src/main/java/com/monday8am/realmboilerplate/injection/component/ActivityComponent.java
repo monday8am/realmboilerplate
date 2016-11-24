@@ -14,6 +14,6 @@ import dagger.Subcomponent;
 @Subcomponent(modules = ActivityModule.class)
 public interface ActivityComponent {
 
-    void inject (MainActivity activity);
-
+    // TODO: Review how subcomponents work!
+    //void inject (MainActivity activity);
 }
