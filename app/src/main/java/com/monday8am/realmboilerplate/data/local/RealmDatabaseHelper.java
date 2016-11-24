@@ -6,6 +6,7 @@ import android.support.annotation.UiThread;
 import com.monday8am.realmboilerplate.data.model.NYTimesStory;
 
 import java.io.Closeable;
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -39,8 +40,7 @@ public class RealmDatabaseHelper implements Closeable {
      * Loads the news feed as well as all future updates.
      */
     @UiThread
-    public Observable<RealmResults<NYTimesStory>> loadNewsFeed(@NonNull String sectionKey,
-                                                               boolean forceReload) {
+    public Observable<RealmResults<NYTimesStory>> loadNewsFeed(@NonNull String sectionKey) {
         return mRealm.where(NYTimesStory.class).equalTo(NYTimesStory.API_SECTION, sectionKey)
                 .findAllSortedAsync(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
                 .asObservable();
@@ -79,7 +79,9 @@ public class RealmDatabaseHelper implements Closeable {
      */
     @UiThread
     public Observable<NYTimesStory> loadStory(final String storyId) {
-        return mRealm.where(NYTimesStory.class).equalTo(NYTimesStory.URL, storyId).findFirstAsync()
+        return mRealm.where(NYTimesStory.class)
+                .equalTo(NYTimesStory.URL, storyId)
+                .findFirstAsync()
                 .<NYTimesStory>asObservable()
                 .filter(new Func1<NYTimesStory, Boolean>() {
                     @Override
@@ -87,6 +89,38 @@ public class RealmDatabaseHelper implements Closeable {
                         return story.isLoaded();
                     }
                 });
+    }
+
+    @UiThread
+    public void mergeRemoteStoryList(final String sectionKey, final List<NYTimesStory> stories) {
+        if (stories.isEmpty()) return;
+
+        mRealm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                for (NYTimesStory story : stories) {
+
+                    // Find existing story in Realm (if any)
+                    // If it exists, we need to merge the local state
+                    // with the remote, because the local state
+                    // contains more info than is available on the server.
+                    NYTimesStory persistedStory = realm.where(NYTimesStory.class)
+                            .equalTo(NYTimesStory.URL, story.getUrl())
+                            .findFirst();
+
+                    // Only create or update the local story if needed
+                    if (MergePolicer.mergeNYTimeStory(persistedStory, story)) {
+                        story.setApiSection(sectionKey);
+                        realm.copyToRealmOrUpdate(story);
+                    }
+                }
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable throwable) {
+                Timber.e(throwable, "Could not save data");
+            }
+        });
     }
 
     /**
@@ -97,6 +131,10 @@ public class RealmDatabaseHelper implements Closeable {
         mRealm.close();
     }
 
+    /**
+     * Keep only one Realm instance open, depending on
+     * the activity is open or closed.
+     */
     @UiThread
     public void incrementCount() {
         if (mActivityCounter == 0) {
