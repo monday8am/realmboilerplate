@@ -1,11 +1,11 @@
 package com.monday8am.realmboilerplate.ui.base;
 
 /**
- * Base class that implements the Presenter interface and provides a base implementation for
+ * Base class that implements the MvpPresenter interface and provides a base implementation for
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
  */
-public class BasePresenter<T extends MvpView> implements Presenter<T> {
+public class BaseMvpPresenter<T extends MvpView> implements MvpPresenter<T> {
 
     private T mMvpView;
 
@@ -33,8 +33,8 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
 
     public static class MvpViewNotAttachedException extends RuntimeException {
         public MvpViewNotAttachedException() {
-            super("Please call Presenter.attachView(MvpView) before" +
-                    " requesting data to the Presenter");
+            super("Please call MvpPresenter.attachView(MvpView) before" +
+                    " requesting data to the MvpPresenter");
         }
     }
 }
