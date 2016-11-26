@@ -42,7 +42,7 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             ext.betaDistributionReleaseNotesFilePath =
                     file('../crashlytics_release_notes.txt').absolutePath
@@ -51,6 +51,7 @@ android {
         debug {
             versionNameSuffix " Debug"
             debuggable true
+            minifyEnabled false
         }
     }
 
@@ -98,7 +99,8 @@ dependencies {
 
     compile 'com.jakewharton.timber:timber:4.1.2'
     compile "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION"
+    apt "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION"
+    compile 'com.jakewharton:butterknife:8.0.1'
 
     // Instrumentation test dependencies
     androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION", {
