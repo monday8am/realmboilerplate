@@ -40,9 +40,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Inject realm helper.
-        RealmBoilerplateApp.get(this).getAppComponent().inject(this);
-
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
         mActivityId = savedInstanceState != null ?
@@ -61,7 +58,7 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         mActivityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
-
+        mActivityComponent.inject(this);
         // Increase number of activities in realm internal counter.
         realmHelper.incrementCount();
     }

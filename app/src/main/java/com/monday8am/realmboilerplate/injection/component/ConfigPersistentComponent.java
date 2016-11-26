@@ -13,7 +13,6 @@ import dagger.Component;
  * Use the {@link ConfigPersistent} scope to annotate dependencies that need to survive
  * configuration changes (for example Presenters).
  */
-
 @ConfigPersistent
 @Component(dependencies = AppComponent.class)
 public interface ConfigPersistentComponent {
