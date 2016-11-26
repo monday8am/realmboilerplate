@@ -4,9 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
-import com.monday8am.realmboilerplate.injection.component.AppComponent;
+import com.monday8am.realmboilerplate.injection.component.ApplicationComponent;
 import com.monday8am.realmboilerplate.injection.component.DaggerAppComponent;
-import com.monday8am.realmboilerplate.injection.module.AppModule;
+import com.monday8am.realmboilerplate.injection.module.ApplicationModule;
 
 import io.fabric.sdk.android.Fabric;
 import rx.plugins.RxJavaErrorHandler;
@@ -15,7 +15,7 @@ import timber.log.Timber;
 
 public class RealmBoilerplateApp extends Application {
 
-    private AppComponent mAppComponent;
+    private ApplicationComponent mAppComponent;
 
     @Override
     public void onCreate() {
@@ -27,7 +27,7 @@ public class RealmBoilerplateApp extends Application {
         }
 
         mAppComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this, "http://api.nytimes.com/"))
+                .appModule(new ApplicationModule(this, "http://api.nytimes.com/"))
                 .build();
 
         RxJavaPlugins.getInstance().registerErrorHandler(new RxJavaErrorHandler() {
@@ -43,12 +43,12 @@ public class RealmBoilerplateApp extends Application {
         return (RealmBoilerplateApp) context.getApplicationContext();
     }
 
-    public AppComponent getAppComponent() {
+    public ApplicationComponent getAppComponent() {
         return mAppComponent;
     }
 
     // Needed to replace the component with a test specific one
-    public void setComponent(AppComponent applicationComponent) {
+    public void setComponent(ApplicationComponent applicationComponent) {
         mAppComponent = applicationComponent;
     }
 }

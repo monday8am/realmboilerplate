@@ -26,12 +26,12 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 
 @Module
-public class AppModule {
+public class ApplicationModule {
 
     private String mBaseUrl;
     private Application mApplication;
 
-    public AppModule(Application application, String baseUrl) {
+    public ApplicationModule(Application application, String baseUrl) {
         mApplication = application;
         this.mBaseUrl = baseUrl;
     }

@@ -14,7 +14,7 @@ import dagger.Component;
  * configuration changes (for example Presenters).
  */
 @ConfigPersistent
-@Component(dependencies = AppComponent.class)
+@Component(dependencies = ApplicationComponent.class)
 public interface ConfigPersistentComponent {
 
     ActivityComponent activityComponent(ActivityModule activityModule);
