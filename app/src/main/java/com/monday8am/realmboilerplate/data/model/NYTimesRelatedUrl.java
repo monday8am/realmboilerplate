@@ -1,5 +1,6 @@
 package com.monday8am.realmboilerplate.data.model;
 
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
@@ -10,40 +11,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-        "url",
-        "format",
-        "height",
-        "width",
-        "type",
-        "subtype",
-        "caption",
-        "copyright"
+        "suggested_link_text",
+        "url"
 })
-public class NYTimesMultimedium extends RealmObject {
-    @PrimaryKey
+public class NYTimesRelatedUrl {
+
+    @JsonProperty("suggested_link_text")
+    public String suggestedLinkText;
     @JsonProperty("url")
     public String url;
-    @JsonProperty("format")
-    public String format;
-    @JsonProperty("height")
-    public int height;
-    @JsonProperty("width")
-    public int width;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("subtype")
-    public String subtype;
-    @JsonProperty("caption")
-    public String caption;
-    @JsonProperty("copyright")
-    public String copyright;
-
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 

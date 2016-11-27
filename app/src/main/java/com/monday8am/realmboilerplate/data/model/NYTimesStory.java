@@ -1,199 +1,93 @@
 package com.monday8am.realmboilerplate.data.model;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.monday8am.realmboilerplate.data.remote.RealmListNYTimesMultimediumDeserializer;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated("org.jsonschema2pojo")
+@JsonPropertyOrder({
+        "section",
+        "subsection",
+        "title",
+        "abstract",
+        "url",
+        "thumbnail_standard",
+        "short_url",
+        "byline",
+        "item_type",
+        "updated_date",
+        "created_date",
+        "published_date",
+        "material_type_facet",
+        "kicker",
+        "des_facet",
+        "org_facet",
+        "per_facet",
+        "geo_facet",
+        "multimedia",
+        "related_urls"
+})
 public class NYTimesStory extends RealmObject {
-
-    public static final String PUBLISHED_DATE = "publishedDate";
-    public static final String URL = "url";
-    public static final String API_SECTION = "apiSection";
-
-    private String mApiSection;
-
-    // have incorrect indentation level 8, expected level should be 12.
     @JsonProperty("section")
-    private String mSection;
-
+    public String section;
     @JsonProperty("subsection")
-    private String mSubsection;
-
+    public String subsection;
     @JsonProperty("title")
-    private String mTitle;
-
+    public String title;
     @JsonProperty("abstract")
-    private String mStoryAbstract;
-
-    @PrimaryKey
+    public String _abstract;
     @JsonProperty("url")
-    private String mUrl;
-
+    public String url;
+    @JsonProperty("thumbnail_standard")
+    public String thumbnailStandard;
+    @JsonProperty("short_url")
+    public String shortUrl;
     @JsonProperty("byline")
-    private String mByline;
-
+    public String byline;
     @JsonProperty("item_type")
-    private String mItemType;
-
+    public String itemType;
     @JsonProperty("updated_date")
-    private String mUpdatedDate;
-
+    public String updatedDate;
     @JsonProperty("created_date")
-    private String mCreatedDate;
-
+    public String createdDate;
     @JsonProperty("published_date")
-    private String mPublishedDate;
-
+    public String publishedDate;
     @JsonProperty("material_type_facet")
-    private String mMaterialTypeFacet;
-
+    public String materialTypeFacet;
     @JsonProperty("kicker")
-    private String mKicker;
-
-    @JsonProperty("multimedia")
-    private RealmList<NYTimesMultimedium> mMultimedia;
-
+    public String kicker;
     @JsonProperty("des_facet")
-    private String desFacet;
+    public List<String> desFacet = new ArrayList<String>();
+    @JsonProperty("org_facet")
+    public List<String> orgFacet = new ArrayList<String>();
+    @JsonProperty("per_facet")
+    public List<String> perFacet = new ArrayList<String>();
+    @JsonProperty("geo_facet")
+    public List<String> geoFacet = new ArrayList<String>();
+    @JsonProperty("multimedia")
+    public List<NYTimesMultimedium> multimedia = new ArrayList<NYTimesMultimedium>();
+    @JsonProperty("related_urls")
+    public List<NYTimesRelatedUrl> relatedUrls = new ArrayList<NYTimesRelatedUrl>();
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    private long mSortTimeStamp;
-
-    private boolean mRead;
-
-    public String getSection() {
-        return mSection;
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
     }
 
-    public void setSection(String mSection) {
-        this.mSection = mSection;
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
-
-    public String getSubsection() {
-        return mSubsection;
-    }
-
-    public void setSubsection(String mSubsection) {
-        this.mSubsection = mSubsection;
-    }
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public void setTitle(String title) {
-        mTitle = title;
-    }
-
-    public String getStoryAbstract() {
-        return mStoryAbstract;
-    }
-
-    public void setStoryAbstract(String storyAbstract) {
-        mStoryAbstract = storyAbstract;
-    }
-
-    public String getUrl() {
-        return mUrl;
-    }
-
-    public void setUrl(String url) {
-        mUrl = url;
-    }
-
-    public String getByline() {
-        return mByline;
-    }
-
-    public void setByline(String byline) {
-        mByline = byline;
-    }
-
-    public String getItemType() {
-        return mItemType;
-    }
-
-    public void setItemType(String itemType) {
-        mItemType = itemType;
-    }
-
-    public String getUpdatedDate() {
-        return mUpdatedDate;
-    }
-
-    public void setUpdatedDate(String updatedDate) {
-        mUpdatedDate = updatedDate;
-    }
-
-    public String getCreatedDate() {
-        return mCreatedDate;
-    }
-
-    public void setCreatedDate(String createdDate) {
-        this.mCreatedDate = createdDate;
-    }
-
-    public String getPublishedDate() {
-        return mPublishedDate;
-    }
-
-    public void setPublishedDate(String publishedDate) {
-        mPublishedDate = publishedDate;
-    }
-
-    public String getMaterialTypeFacet() {
-        return mMaterialTypeFacet;
-    }
-
-    public void setMaterialTypeFacet(String materialTypeFacet) {
-        mMaterialTypeFacet = materialTypeFacet;
-    }
-
-    public String getKicker() {
-        return mKicker;
-    }
-
-    public void setKicker(String kicker) {
-        mKicker = kicker;
-    }
-
-    public RealmList<NYTimesMultimedium> getMultimedia() {
-        return mMultimedia;
-    }
-
-    @JsonDeserialize(using = RealmListNYTimesMultimediumDeserializer.class)
-    public void setMultimedia(RealmList<NYTimesMultimedium> multimedia) {
-        mMultimedia = multimedia;
-    }
-
-    public long getSortTimeStamp() {
-        return mSortTimeStamp;
-    }
-
-    public void setSortTimeStamp(long sortTimeStamp) {
-        mSortTimeStamp = sortTimeStamp;
-    }
-
-    public boolean isRead() {
-        return mRead;
-    }
-
-    public void setRead(boolean read) {
-        mRead = read;
-    }
-
-    public String getApiSection() {
-        return mApiSection;
-    }
-
-    public void setApiSection(String apiSection) {
-        mApiSection = apiSection;
-    }
-
 }
-
-
