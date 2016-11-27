@@ -2,8 +2,6 @@ package com.monday8am.realmboilerplate.injection.module;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.monday8am.realmboilerplate.data.local.RealmDatabaseHelper;
 import com.monday8am.realmboilerplate.data.remote.NYTimesService;
@@ -52,7 +50,9 @@ public class ApplicationModule {
     @Singleton
     RealmDatabaseHelper provideRealmDatabase(Application application) {
         Realm.init(application);
-        RealmConfiguration conf = new RealmConfiguration.Builder().build();
+        RealmConfiguration conf = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
         return new RealmDatabaseHelper(conf);
     }
 

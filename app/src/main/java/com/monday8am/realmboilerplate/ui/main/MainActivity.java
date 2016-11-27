@@ -2,7 +2,6 @@ package com.monday8am.realmboilerplate.ui.main;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;

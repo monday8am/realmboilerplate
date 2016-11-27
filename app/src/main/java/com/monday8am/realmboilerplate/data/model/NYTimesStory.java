@@ -58,6 +58,9 @@ public class NYTimesStory extends RealmObject {
     @JsonProperty("multimedia")
     private RealmList<NYTimesMultimedium> mMultimedia;
 
+    @JsonProperty("des_facet")
+    private String desFacet;
+
     private long mSortTimeStamp;
 
     private boolean mRead;
@@ -192,3 +195,5 @@ public class NYTimesStory extends RealmObject {
     }
 
 }
+
+

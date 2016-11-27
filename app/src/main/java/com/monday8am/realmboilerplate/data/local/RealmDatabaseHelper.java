@@ -41,8 +41,9 @@ public class RealmDatabaseHelper implements Closeable {
      */
     @UiThread
     public Observable<RealmResults<NYTimesStory>> loadNewsFeed(@NonNull String sectionKey) {
-        return mRealm.where(NYTimesStory.class).equalTo(NYTimesStory.API_SECTION, sectionKey)
-                .findAllSortedAsync(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
+        RealmResults<NYTimesStory> test = mRealm.where(NYTimesStory.class).findAll();
+        return mRealm.where(NYTimesStory.class).findAll() //equalTo(NYTimesStory.API_SECTION, sectionKey)
+                //.findAllSortedAsync(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
                 .asObservable();
     }
 

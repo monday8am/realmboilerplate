@@ -81,13 +81,13 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.View>
 
     @Override
     public void refreshList() {
-
+        mDataManager.reloadNewsFeed();
+        mMvpView.hideRefreshing();
     }
 
     @Override
     public void listItemSelected(int itemPosition) {
-        mDataManager.reloadNewsFeed();
-        mMvpView.hideRefreshing();
+        // navigate!!
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
 import com.monday8am.realmboilerplate.injection.component.ApplicationComponent;
-import com.monday8am.realmboilerplate.injection.component.DaggerAppComponent;
+import com.monday8am.realmboilerplate.injection.component.DaggerApplicationComponent;
 import com.monday8am.realmboilerplate.injection.module.ApplicationModule;
 
 import io.fabric.sdk.android.Fabric;
@@ -26,8 +26,8 @@ public class RealmBoilerplateApp extends Application {
             Fabric.with(this, new Crashlytics());
         }
 
-        mAppComponent = DaggerAppComponent.builder()
-                .appModule(new ApplicationModule(this, "http://api.nytimes.com/"))
+        mAppComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this, "http://api.nytimes.com/"))
                 .build();
 
         RxJavaPlugins.getInstance().registerErrorHandler(new RxJavaErrorHandler() {
