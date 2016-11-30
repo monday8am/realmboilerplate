@@ -11,7 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
+
+/*
+ * NYTimesMultimedium API object used as POJO and as a Realm object
+ * at the same time.
+ */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
@@ -24,7 +30,7 @@ import io.realm.annotations.PrimaryKey;
         "subtype",
         "caption",
         "copyright"
-})
+        })
 public class NYTimesMultimedium extends RealmObject {
     @PrimaryKey
     @JsonProperty("url")
@@ -44,16 +50,17 @@ public class NYTimesMultimedium extends RealmObject {
     @JsonProperty("copyright")
     public String copyright;
 
+    @Ignore
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> mAdditionalProperties = new HashMap<String, Object>();
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+        return this.mAdditionalProperties;
     }
 
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+        this.mAdditionalProperties.put(name, value);
     }
 }

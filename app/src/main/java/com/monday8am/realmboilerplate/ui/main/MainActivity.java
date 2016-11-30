@@ -27,6 +27,7 @@ import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+import timber.log.Timber;
 
 
 public class MainActivity extends BaseActivity implements MainContract.View {
@@ -146,8 +147,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             }
             ViewHolder holder = (ViewHolder) view.getTag();
             NYTimesStory story = getItem(position);
-            holder.titleView.setText(story.getTitle());
-            holder.titleView.setTextColor(story.isRead() ? mReadColor : mUnreadColor);
+            Timber.d(story.shortUrl);
+            holder.titleView.setText(story.title);
+            holder.titleView.setTextColor(story.isRead ? mReadColor : mUnreadColor);
             return view;
         }
 

@@ -15,7 +15,7 @@ import rx.Observable;
 
 public interface NYTimesService {
 
-    @GET("svc/topstories/v1/{section}.json")
+    @GET("svc/topstories/v2/{section}.json")
     Observable<NYTimesResponse<List<NYTimesStory>>> topStories(
             @Path("section") String section,
             @Query(value = "api-key", encoded = true) String apiKey);

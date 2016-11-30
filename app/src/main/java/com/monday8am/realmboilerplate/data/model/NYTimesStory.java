@@ -10,8 +10,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.monday8am.realmboilerplate.data.remote.RealmListNYTimesMultimediumDeserializer;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
+import io.realm.annotations.PrimaryKey;
+
+/*
+ * NYTimesStory used as POJO and as a Realm object
+ * at the same time.
+ */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
@@ -36,8 +46,20 @@ import io.realm.RealmObject;
         "geo_facet",
         "multimedia",
         "related_urls"
-})
+        })
 public class NYTimesStory extends RealmObject {
+    public static final String PUBLISHED_DATE = "publishedDate";
+    public static final String URL = "url";
+    public static final String API_SECTION = "apiSection";
+
+    public long sortTimeStamp;
+    public boolean isRead;
+    public String apiSection;
+
+    @PrimaryKey
+    @JsonProperty("url")
+    public String url;
+
     @JsonProperty("section")
     public String section;
     @JsonProperty("subsection")
@@ -46,8 +68,6 @@ public class NYTimesStory extends RealmObject {
     public String title;
     @JsonProperty("abstract")
     public String _abstract;
-    @JsonProperty("url")
-    public String url;
     @JsonProperty("thumbnail_standard")
     public String thumbnailStandard;
     @JsonProperty("short_url")
@@ -66,28 +86,36 @@ public class NYTimesStory extends RealmObject {
     public String materialTypeFacet;
     @JsonProperty("kicker")
     public String kicker;
+    @Ignore
     @JsonProperty("des_facet")
     public List<String> desFacet = new ArrayList<String>();
+    @Ignore
     @JsonProperty("org_facet")
     public List<String> orgFacet = new ArrayList<String>();
+    @Ignore
     @JsonProperty("per_facet")
     public List<String> perFacet = new ArrayList<String>();
+    @Ignore
     @JsonProperty("geo_facet")
     public List<String> geoFacet = new ArrayList<String>();
-    @JsonProperty("multimedia")
-    public List<NYTimesMultimedium> multimedia = new ArrayList<NYTimesMultimedium>();
+    @Ignore
     @JsonProperty("related_urls")
     public List<NYTimesRelatedUrl> relatedUrls = new ArrayList<NYTimesRelatedUrl>();
+    @Ignore
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> mAdditionalProperties = new HashMap<String, Object>();
+
+    @JsonDeserialize(using = RealmListNYTimesMultimediumDeserializer.class)
+    @JsonProperty("multimedia")
+    public RealmList<NYTimesMultimedium> multimedia = new RealmList<NYTimesMultimedium>();
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+        return this.mAdditionalProperties;
     }
 
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+        this.mAdditionalProperties.put(name, value);
     }
 }

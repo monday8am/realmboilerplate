@@ -20,18 +20,18 @@ public class MergePolicer {
 
     public static boolean mergeNYTimeStory (NYTimesStory persistedStory, NYTimesStory story) {
 
-        Date parsedPublishedDate = mInputDateFormat.parse(story.getPublishedDate(),
+        Date parsedPublishedDate = mInputDateFormat.parse(story.publishedDate,
                 new ParsePosition(0));
-        story.setSortTimeStamp(parsedPublishedDate.getTime());
-        story.setPublishedDate(mOutputDateFormat.format(parsedPublishedDate));
+        story.sortTimeStamp = parsedPublishedDate.getTime();
+        story.publishedDate = mOutputDateFormat.format(parsedPublishedDate);
 
         if (persistedStory != null) {
             // Only local state is the `read` boolean.
-            story.setRead(persistedStory.isRead());
+            story.isRead = persistedStory.isRead;
         }
 
         return  (persistedStory == null ||
-                !persistedStory.getUpdatedDate().equals(story.getUpdatedDate()));
+                !persistedStory.updatedDate.equals(story.updatedDate));
     }
 
 }

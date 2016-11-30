@@ -27,7 +27,7 @@ public class RealmBoilerplateApp extends Application {
         }
 
         mAppComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this, "http://api.nytimes.com/"))
+                .applicationModule(new ApplicationModule(this, "https://api.nytimes.com/"))
                 .build();
 
         RxJavaPlugins.getInstance().registerErrorHandler(new RxJavaErrorHandler() {

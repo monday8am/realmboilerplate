@@ -30,19 +30,19 @@ public class RealmListNYTimesMultimediumDeserializer
     @Override
     public List<NYTimesMultimedium> deserialize(JsonParser jp, DeserializationContext ctxt)
             throws IOException {
-        RealmList<NYTimesMultimedium> list = new RealmList<>();
+        RealmList<NYTimesMultimedium> realmList = new RealmList<>();
 
         TreeNode treeNode = jp.getCodec().readTree(jp);
         if (!(treeNode instanceof ArrayNode)) {
-            return list;
+            return realmList;
         }
 
         ArrayNode arrayNode = (ArrayNode) treeNode;
         for (JsonNode node : arrayNode) {
             NYTimesMultimedium nyTimesMultimedium =
                     mObjectMapper.treeToValue(node, NYTimesMultimedium.class);
-            list.add(nyTimesMultimedium);
+            realmList.add(nyTimesMultimedium);
         }
-        return list;
+        return realmList;
     }
 }

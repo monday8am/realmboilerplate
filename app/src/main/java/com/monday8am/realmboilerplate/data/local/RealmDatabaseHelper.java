@@ -42,8 +42,8 @@ public class RealmDatabaseHelper implements Closeable {
     @UiThread
     public Observable<RealmResults<NYTimesStory>> loadNewsFeed(@NonNull String sectionKey) {
         RealmResults<NYTimesStory> test = mRealm.where(NYTimesStory.class).findAll();
-        return mRealm.where(NYTimesStory.class).findAll() //equalTo(NYTimesStory.API_SECTION, sectionKey)
-                //.findAllSortedAsync(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
+        return mRealm.where(NYTimesStory.class).equalTo(NYTimesStory.API_SECTION, sectionKey)
+                .findAllSortedAsync(NYTimesStory.PUBLISHED_DATE, Sort.DESCENDING)
                 .asObservable();
     }
 
@@ -62,7 +62,7 @@ public class RealmDatabaseHelper implements Closeable {
                         .equalTo(NYTimesStory.URL, storyId)
                         .findFirst();
                 if (persistedStory != null) {
-                    persistedStory.setRead(read);
+                    persistedStory.isRead = read;
                 } else {
                     Timber.e("Trying to update a story that no longer exists: %1$s", storyId);
                 }
@@ -106,12 +106,12 @@ public class RealmDatabaseHelper implements Closeable {
                     // with the remote, because the local state
                     // contains more info than is available on the server.
                     NYTimesStory persistedStory = realm.where(NYTimesStory.class)
-                            .equalTo(NYTimesStory.URL, story.getUrl())
+                            .equalTo(NYTimesStory.URL, story.url)
                             .findFirst();
 
                     // Only create or update the local story if needed
                     if (MergePolicer.mergeNYTimeStory(persistedStory, story)) {
-                        story.setApiSection(sectionKey);
+                        story.apiSection = sectionKey;
                         realm.copyToRealmOrUpdate(story);
                     }
                 }
