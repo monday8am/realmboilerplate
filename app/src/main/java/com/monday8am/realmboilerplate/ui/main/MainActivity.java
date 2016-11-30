@@ -27,8 +27,6 @@ import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
-import timber.log.Timber;
-
 
 public class MainActivity extends BaseActivity implements MainContract.View {
 
@@ -126,9 +124,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         private final LayoutInflater mInflater;
         @LayoutRes private final int mLayoutResource;
 
-        @BindColor(android.R.color.darker_gray) int mReadColor;
-        @BindColor(android.R.color.primary_text_light) int mUnreadColor;
-
         public NewsListAdapter(Context context, List<NYTimesStory> initialData) {
             super(context, android.R.layout.simple_list_item_1);
             setNotifyOnChange(false);
@@ -147,18 +142,20 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             }
             ViewHolder holder = (ViewHolder) view.getTag();
             NYTimesStory story = getItem(position);
-            Timber.d(story.shortUrl);
             holder.titleView.setText(story.title);
-            holder.titleView.setTextColor(story.isRead ? mReadColor : mUnreadColor);
+            holder.titleView.setTextColor(story.isRead ? holder.mReadColor : holder.mUnreadColor);
             return view;
         }
 
         static class ViewHolder {
             @BindView(android.R.id.text1) TextView titleView;
+            @BindColor(android.R.color.darker_gray) int mReadColor;
+            @BindColor(android.R.color.primary_text_light) int mUnreadColor;
 
             public ViewHolder(View view) {
                 ButterKnife.bind(this, view);
             }
+
         }
     }
 
